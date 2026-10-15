@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Matematika Kelas 4 SD - Komunitas Pendidikan Digital Al-Ikhlas Gandamekar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --theme-color: #563d7c;
+            --header-color: #007bff;
+            --footer-color: #007bff;
+            --body-bg: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--header-color);
+            color: #ffffff;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            background-color: #ffffff;
+            object-fit: cover;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-title-container {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        /* Card Styling */
+        .quiz-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-top: 25px;
+            margin-bottom: 25px;
+            padding: 25px;
+        }
+
+        /* Question and Option Format */
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #212529;
+            text-align: left !important;
+            margin-bottom: 15px;
+        }
+
+        .options-container {
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        .option-item {
+            margin-bottom: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            border: 1px solid #e9ecef;
+            background: transparent !important;
+        }
+
+        .option-item:hover {
+            background-color: #f1f3f5 !important;
+        }
+
+        .option-item input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .option-item label {
+            cursor: pointer;
+            width: 100%;
+            margin: 0;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* Navigasi Grid Soal */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+
+        .nav-btn {
+            width: 100%;
+            height: 40px;
+            padding: 0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        .theme-btn {
+            background-color: var(--theme-color);
+            color: white;
+        }
+
+        .theme-btn:hover {
+            background-color: #432e62;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-color);
+            color: white;
+            padding: 18px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .score-badge {
+            background-color: var(--theme-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container-fluid">
+            <div class="header-content">
+                <!-- Posisi Logo dan Alamat di Kiri -->
+                <div class="brand-section">
+                    <!-- Menggunakan logo cerah dengan laptop sirkuit sesuai permintaan -->
+                    <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="95" fill="#f8f9fa" stroke="#007bff" stroke-width="6"/>
+                        <circle cx="100" cy="100" r="82" fill="none" stroke="#d4af37" stroke-width="4" stroke-dasharray="6,3"/>
+                        <circle cx="100" cy="100" r="70" fill="#0dcaf0"/>
+                        <!-- Laptop Digital SVG -->
+                        <rect x="55" y="65" width="90" height="55" rx="6" fill="#ffffff"/>
+                        <rect x="60" y="70" width="80" height="43" fill="#198754"/>
+                        <path d="M70 92 h15 v-8 h12 M85 92 v8 h18" stroke="#ffffff" stroke-width="2" fill="none"/>
+                        <circle cx="100" cy="80" r="3" fill="#ffffff"/>
+                        <circle cx="115" cy="100" r="3" fill="#ffffff"/>
+                        <path d="M45 C45 120, 155 120, 155 125 h-110 z" fill="#adb5bd"/>
+                        <!-- Crescent & Star -->
+                        <path d="M100 32 a10 10 0 1 0 10 10 a8 8 0 1 1 -10 -10 z" fill="#ffc107"/>
+                        <text x="100" y="157" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold">AL-IKHLAS</text>
+                        <text x="100" y="168" text-anchor="middle" fill="#ffc107" font-size="7.5">GANDAMEKAR</text>
+                    </svg>
+                    <div>
+                        <h6 class="m-0 fw-bold">Komunitas Pendidikan Digital Al-Ikhlas</h6>
+                        <small class="d-block text-white-50"><i class="bi bi-geo-alt-fill me-1"></i>Jl. Djasip Gandamekar Cikarang Barat</small>
+                    </div>
+                </div>
+
+                <!-- Judul Utama Posisi Tengah -->
+                <div class="header-title-container">
+                    <h3 class="m-0 fw-bold">QUIZ MATEMATIKA KELAS 4 SD</h3>
+                    <small>Pembelajaran Digital Interaktif</small>
+                </div>
+
+                <!-- Spacer Kanan untuk Keseimbangan Layout Header -->
+                <div style="width: 70px;" class="d-none d-md-block"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-auto">
+        <!-- SCREEN 1: INPUT NAMA MURID -->
+        <div id="screen-welcome" class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="quiz-card text-center">
+                    <i class="bi bi-person-bounding-box display-1 text-primary mb-3"></i>
+                    <h4 class="fw-bold mb-3" style="color: var(--theme-color);">Selamat Datang di Quiz Matematika</h4>
+                    <p class="text-muted">Silakan masukkan nama Anda sebelum memulai kuis 50 soal.</p>
+                    
+                    <form id="form-start" onsubmit="startQuiz(event)">
+                        <div class="mb-4">
+                            <input type="text" id="student-name" class="form-control form-control-lg text-center" placeholder="Masukkan Nama Murid..." required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn theme-btn btn-lg w-100 shadow-sm">
+                            <i class="bi bi-play-circle-fill me-2"></i>Mulai Kuis
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: AREA SOAL QUIZ -->
+        <div id="screen-quiz" class="row d-none">
+            <!-- Sidebar Navigasi Soal (Kiri/Atas) -->
+            <div class="col-lg-4 col-md-5 mb-4">
+                <div class="quiz-card m-0 h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="fw-bold text-secondary"><i class="bi bi-grid-3x3-gap-fill me-1"></i> Navigasi Soal</span>
+                        <span class="score-badge" id="live-score">Skor: 0</span>
+                    </div>
+                    <hr>
+                    <div class="nav-grid mb-3" id="navigation-grid">
+                        <!-- Grid 1-50 dihasilkan oleh JS -->
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center small text-muted">
+                        <span><i class="bi bi-square-fill text-success"></i> Dijawab</span>
+                        <span><i class="bi bi-square-fill text-secondary"></i> Belum</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area Pertanyaan (Kanan) -->
+            <div class="col-lg-8 col-md-7">
+                <div class="quiz-card m-0">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold m-0" style="color: var(--theme-color);" id="question-number-title">Soal No. 1</h5>
+                        <button class="btn btn-outline-primary btn-sm" onclick="speakCurrentQuestion()">
+                            <i class="bi bi-volume-up-fill me-1"></i> Bacakan Soal
+                        </button>
+                    </div>
+
+                    <div id="feedback-alert" class="alert d-none my-2" role="alert"></div>
+
+                    <!-- Format Pertanyaan Rata Kiri Tanpa Background -->
+                    <div class="question-container mt-3">
+                        <div class="question-text" id="question-text">Loading Soal...</div>
+                        
+                        <div class="options-container mt-3" id="options-container">
+                            <!-- Opsi A, B, C, D di-render secara dinamis -->
+                        </div>
+                    </div>
+
+                    <!-- Tombol Navigasi Bawah -->
+                    <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                        <button class="btn btn-secondary px-4" id="btn-prev" onclick="navigateQuestion(-1)">
+                            <i class="bi bi-arrow-left me-1"></i> Sebelumnya
+                        </button>
+                        <button class="btn theme-btn px-4" id="btn-next" onclick="navigateQuestion(1)">
+                            Selanjutnya <i class="bi bi-arrow-right ms-1"></i>
+                        </button>
+                        <button class="btn btn-danger px-4 d-none" id="btn-finish" onclick="finishQuiz()">
+                            <i class="bi bi-check-circle-fill me-1"></i> Selesai
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: HASIL AKHIR -->
+        <div id="screen-result" class="row justify-content-center d-none">
+            <div class="col-md-7">
+                <div class="quiz-card text-center">
+                    <i class="bi bi-trophy-fill display-1 text-warning mb-3"></i>
+                    <h3 class="fw-bold" style="color: var(--theme-color);">Hasil Kuis Matematika</h3>
+                    <h5 class="text-muted mb-4" id="result-student-name">Nama Murid</h5>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-4">
+                            <div class="p-3 border rounded bg-light">
+                                <div class="text-muted small">Total Soal</div>
+                                <div class="fs-4 fw-bold text-dark">50</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-3 border rounded bg-light">
+                                <div class="text-muted small">Jawaban Benar</div>
+                                <div class="fs-4 fw-bold text-success" id="result-correct">0</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-3 border rounded bg-light">
+                                <div class="text-muted small">Jawaban Salah</div>
+                                <div class="fs-4 fw-bold text-danger" id="result-wrong">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded mb-4" style="background-color: #f0e6ff; border: 2px dashed var(--theme-color);">
+                        <h6 class="text-muted mb-1">TOTAL SKOR AKHIR</h6>
+                        <h1 class="display-3 fw-bold mb-0" style="color: var(--theme-color);" id="final-score">0</h1>
+                    </div>
+
+                    <div id="appreciation-box" class="alert alert-info fw-bold mb-4"></div>
+
+                    <button class="btn theme-btn btn-lg px-5" onclick="restartQuiz()">
+                        <i class="bi bi-arrow-counterclockwise me-2"></i> Ulangi Kuis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="m-0 fw-semibold">Guru Pengampu: Wahyu Hidayat S.Kom</p>
+            <small class="text-white-50">© 2026 Komunitas Pendidikan Digital Al-Ikhlas Gandamekar. All Rights Reserved.</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Data 50 Soal Matematika Kelas 4 SD
+        const rawQuestions = [
+            { q: "Berapakah hasil dari 1.250 + 3.425?", options: ["4.675", "4.575", "4.685", "4.775"], answer: 0 },
+            { q: "Hasil dari 5.000 - 2.345 adalah...", options: ["2.645", "2.655", "2.755", "2.555"], answer: 1 },
+            { q: "Berapakah hasil kali dari 24 x 15?", options: ["320", "340", "360", "380"], answer: 2 },
+            { q: "Hasil pembagian dari 144 : 12 adalah...", options: ["10", "11", "12", "14"], answer: 2 },
+            { q: "Angka 8 pada bilangan 3.845 menempati nilai tempat...", options: ["Ribuan", "Ratusan", "Puluhan", "Satuan"], answer: 1 },
+            { q: "Pecahan senilai dari 1/2 adalah...", options: ["2/4", "2/3", "3/5", "1/4"], answer: 0 },
+            { q: "Bentuk paling sederhana dari pecahan 6/12 adalah...", options: ["1/3", "1/2", "2/3", "3/4"], answer: 1 },
+            { q: "Hasil dari 2/5 + 1/5 adalah...", options: ["3/10", "3/5", "2/5", "4/5"], answer: 1 },
+            { q: "Hasil pengurangan pecahan 7/8 - 3/8 adalah...", options: ["4/8", "3/8", "5/8", "2/8"], answer: 0 },
+            { q: "Pecahan campuran dari 7/3 adalah...", options: ["2 1/3", "1 2/3", "2 2/3", "3 1/3"], answer: 0 },
+            { q: "Keliling persegi yang memiliki panjang sisi 8 cm adalah...", options: ["24 cm", "32 cm", "64 cm", "16 cm"], answer: 1 },
+            { q: "Luas persegi dengan panjang sisi 9 cm adalah...", options: ["36 cm²", "81 cm²", "18 cm²", "72 cm²"], answer: 1 },
+            { q: "Sebuah persegi panjang memiliki panjang 10 cm dan lebar 5 cm. Kelilingnya adalah...", options: ["30 cm", "50 cm", "25 cm", "15 cm"], answer: 0 },
+            { q: "Luas persegi panjang dengan panjang 12 cm dan lebar 6 cm adalah...", options: ["36 cm²", "72 cm²", "18 cm²", "48 cm²"], answer: 1 },
+            { q: "KPK dari bilangan 4 dan 6 adalah...", options: ["8", "12", "24", "18"], answer: 1 },
+            { q: "FPB dari bilangan 12 dan 18 adalah...", options: ["2", "3", "6", "9"], answer: 2 },
+            { q: "Faktor prima dari bilangan 20 adalah...", options: ["2 dan 3", "2 dan 5", "3 dan 5", "2, 3, dan 5"], answer: 1 },
+            { q: "Kelipatan persekutuan dari 3 dan 4 yang kurang dari 20 adalah...", options: ["6", "12", "16", "18"], answer: 1 },
+            { q: "Hasil pembulatan bilangan 3.456 ke ratusan terdekat adalah...", options: ["3.400", "3.500", "3.000", "4.000"], answer: 1 },
+            { q: "Hasil pembulatan 78 ke puluhan terdekat adalah...", options: ["70", "75", "80", "90"], answer: 2 },
+            { q: "Angka Romawi XIV melambangkan bilangan...", options: ["11", "14", "16", "19"], answer: 1 },
+            { q: "Bilangan 25 jika ditulis dalam angka Romawi adalah...", options: ["XXV", "XXI", "XXX", "XV"], answer: 0 },
+            { q: "Sudut yang besarnya 90 derajat disebut sudut...", options: ["Lancip", "Tumpul", "Siku-siku", "Lurus"], answer: 2 },
+            { q: "Sudut yang besarnya kurang dari 90 derajat disebut sudut...", options: ["Tumpul", "Lancip", "Siku-siku", "Refleks"], answer: 1 },
+            { q: "3 km sama dengan berapa meter?", options: ["30 m", "300 m", "3.000 m", "30.000 m"], answer: 2 },
+            { q: "2.000 gram sama dengan berapa kilogram?", options: ["2 kg", "20 kg", "200 kg", "0,2 kg"], answer: 0 },
+            { q: "2 jam + 30 menit sama dengan berapa menit?", options: ["120 menit", "150 menit", "180 menit", "200 menit"], answer: 1 },
+            { q: "Bangun datar yang memiliki 3 sisi dan 3 sudut adalah...", options: ["Persegi", "Segitiga", "Trapesium", "Jajaran Genjang"], answer: 1 },
+            { q: "Bangun datar yang keempat sisinya sama panjang dan semua sudutnya siku-siku adalah...", options: ["Persegi Panjang", "Belah Ketupat", "Persegi", "Layang-layang"], answer: 2 },
+            { q: "Hasil dari 350 + 125 - 150 adalah...", options: ["325", "300", "350", "375"], answer: 0 },
+            { q: "Hasil dari 45 : 5 x 3 adalah...", options: ["24", "27", "30", "15"], answer: 1 },
+            { q: "Lambang bilangan dari 'Empat ribu lima ratus dua' adalah...", options: ["4.520", "4.502", "4.052", "4.522"], answer: 1 },
+            { q: "Pecahan desimal dari 1/2 adalah...", options: ["0,2", "0,25", "0,5", "0,75"], answer: 2 },
+            { q: "Bentuk persen dari pecahan 1/4 adalah...", options: ["10%", "20%", "25%", "50%"], answer: 2 },
+            { q: "Ibu membeli 2,5 kg gula. Berapa gram gula yang dibeli Ibu?", options: ["250 gram", "2.500 gram", "25.000 gram", "25 gram"], answer: 1 },
+            { q: "Berapa jumlah titik sudut pada bangun segitiga?", options: ["2", "3", "4", "5"], answer: 1 },
+            { q: "Berapa banyak simetri lipat yang dimiliki oleh persegi?", options: ["2", "3", "4", "6"], answer: 2 },
+            { q: "Hasil dari 15² (15 x 15) adalah...", options: ["215", "225", "235", "245"], answer: 1 },
+            { q: "Akar pangkat dua dari 100 adalah...", options: ["5", "10", "20", "50"], answer: 1 },
+            { q: "Hasil dari 3/4 - 1/2 adalah...", options: ["1/4", "2/4", "1/2", "3/8"], answer: 0 },
+            { q: "Sebuah segitiga sama sisi memiliki panjang sisi 7 cm. Kelilingnya adalah...", options: ["14 cm", "21 cm", "28 cm", "35 cm"], answer: 1 },
+            { q: "Alas segitiga 10 cm dan tinggi 6 cm. Luas segitiga tersebut adalah...", options: ["60 cm²", "30 cm²", "20 cm²", "15 cm²"], answer: 1 },
+            { q: "Angka 5 pada bilangan 5.432 bernilai...", options: ["5", "50", "500", "5.000"], answer: 3 },
+            { q: "Pernyataan berikut yang benar adalah...", options: ["1/2 < 1/4", "3/5 > 1/5", "2/3 = 1/3", "1/4 > 1/2"], answer: 1 },
+            { q: "Bilangan kelipatan 5 antara 12 dan 23 adalah...", options: ["15 dan 20", "15 dan 25", "10 dan 15", "20 dan 25"], answer: 0 },
+            { q: "Dua garis yang tidak akan pernah berpotongan meskipun diperpanjang disebut garis...", options: ["Sejajar", "Berpotongan", "Tegak Lurus", "Berhimpit"], answer: 0 },
+            { q: "Satu kuintal sama dengan berapa kilogram?", options: ["10 kg", "50 kg", "100 kg", "1.000 kg"], answer: 2 },
+            { q: "Hasil dari 800 - 250 + 150 adalah...", options: ["600", "700", "750", "850"], answer: 1 },
+            { q: "Sebuah jam menunjukkan pukul 03.00. Jarum jam membentuk sudut...", options: ["Lancip", "Siku-siku", "Tumpul", "Lurus"], answer: 1 },
+            { q: "Berapakah hasil dari (12 + 8) x 5?", options: ["100", "52", "60", "80"], answer: 0 }
+        ];
+
+        // State Aplikasi
+        let studentName = "";
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(50).fill(null);
+        let score = 0;
+        let indonesianVoice = null;
+
+        // Inisialisasi Web Speech API Voice Indonesia
+        function initVoices() {
+            if ('speechSynthesis' in window) {
+                let voices = window.speechSynthesis.getVoices();
+                indonesianVoice = voices.find(v => v.lang.includes('id') || v.lang.includes('ID'));
+                
+                window.speechSynthesis.onvoiceschanged = () => {
+                    voices = window.speechSynthesis.getVoices();
+                    indonesianVoice = voices.find(v => v.lang.includes('id') || v.lang.includes('ID'));
+                };
+            }
+        }
+        initVoices();
+
+        // Fungsi Membaca Suara Teks (Web Speech API)
+        function speakText(text, callback) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'id-ID';
+            utterance.rate = 0.95;
+            utterance.pitch = 1.0;
+
+            if (indonesianVoice) {
+                utterance.voice = indonesianVoice;
+            }
+
+            if (callback) {
+                utterance.onend = callback;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Acak Array Soal (Fisher-Yates)
+        function shuffleQuestions(array) {
+            let shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Mulai Kuis dari Screen Welcome
+        function startQuiz(e) {
+            e.preventDefault();
+            const inputName = document.getElementById('student-name').value.trim();
+            if (!inputName) return;
+
+            studentName = inputName;
+            questions = shuffleQuestions(rawQuestions);
+
+            document.getElementById('screen-welcome').classList.add('d-none');
+            document.getElementById('screen-quiz').classList.remove('d-none');
+
+            renderNavGrid();
+            loadQuestion(0);
+
+            // Suara Pembuka Sesuai Ketentuan dengan Nama Murid
+            const welcomeSpeech = `${studentName}, Soal soal pelajaran ini dibuat oleh Guru Wahyu Hidayat S.Kom`;
+            speakText(welcomeSpeech);
+        }
+
+        // Render Grid Navigasi 1 - 50
+        function renderNavGrid() {
+            const gridContainer = document.getElementById('navigation-grid');
+            gridContainer.innerHTML = '';
+
+            for (let i = 0; i < 50; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-outline-secondary nav-btn';
+                btn.id = `nav-btn-${i}`;
+                btn.innerText = i + 1;
+                btn.onclick = () => jumpToQuestion(i);
+                gridContainer.appendChild(btn);
+            }
+        }
+
+        // Update Tampilan Navigasi
+        function updateNavGridUI() {
+            for (let i = 0; i < 50; i++) {
+                const btn = document.getElementById(`nav-btn-${i}`);
+                if (!btn) continue;
+
+                btn.classList.remove('btn-primary', 'btn-success', 'btn-outline-secondary', 'border-dark');
+
+                if (i === currentQuestionIndex) {
+                    btn.classList.add('border-dark', 'fw-bold');
+                }
+
+                if (userAnswers[i] !== null) {
+                    btn.classList.add('btn-success');
+                } else {
+                    btn.classList.add('btn-outline-secondary');
+                }
+            }
+        }
+
+        // Memuat Soal ke Layar
+        function loadQuestion(index) {
+            currentQuestionIndex = index;
+            const qData = questions[index];
+
+            document.getElementById('question-number-title').innerText = `Soal No. ${index + 1} dari 50`;
+            document.getElementById('question-text').innerText = `${index + 1}. ${qData.q}`;
+
+            // Render Opsi A, B, C, D (Rata Kiri Tanpa Background)
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            const prefixes = ['a', 'b', 'c', 'd'];
+            qData.options.forEach((optText, optIdx) => {
+                const isChecked = userAnswers[index] === optIdx;
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option-item';
+                optionDiv.innerHTML = `
+                    <input type="radio" name="quiz-option" id="opt-${optIdx}" value="${optIdx}" ${isChecked ? 'checked' : ''} onchange="selectOption(${optIdx})">
+                    <label for="opt-${optIdx}">${prefixes[optIdx]}. ${optText}</label>
+                `;
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Update Tombol Navigasi
+            document.getElementById('btn-prev').disabled = index === 0;
+            if (index === 49) {
+                document.getElementById('btn-next').classList.add('d-none');
+                document.getElementById('btn-finish').classList.remove('d-none');
+            } else {
+                document.getElementById('btn-next').classList.remove('d-none');
+                document.getElementById('btn-finish').classList.add('d-none');
+            }
+
+            document.getElementById('feedback-alert').classList.add('d-none');
+            updateNavGridUI();
+        }
+
+        // Membaca Soal dengan Suara
+        function speakCurrentQuestion() {
+            const qData = questions[currentQuestionIndex];
+            const prefixes = ['a', 'b', 'c', 'd'];
+            let optionsSpeech = qData.options.map((opt, i) => `${prefixes[i]}, ${opt}`).join('. ');
+            const fullSpeech = `${studentName}, Soal nomor ${currentQuestionIndex + 1}. ${qData.q}. Pilihan jawaban: ${optionsSpeech}`;
+            speakText(fullSpeech);
+        }
+
+        // Memilih Jawaban Opsi
+        function selectOption(selectedIndex) {
+            userAnswers[currentQuestionIndex] = selectedIndex;
+
+            const qData = questions[currentQuestionIndex];
+            const isCorrect = selectedIndex === qData.answer;
+
+            calculateScore();
+
+            const alertBox = document.getElementById('feedback-alert');
+            alertBox.classList.remove('d-none', 'alert-success', 'alert-danger');
+
+            let feedbackText = "";
+            if (isCorrect) {
+                feedbackText = `${studentName}, jawaban benar, kamu dapat 100 poin`;
+                alertBox.classList.add('alert-success');
+                alertBox.innerHTML = `<i class="bi bi-check-circle-fill me-2"></i><strong>${feedbackText}</strong>`;
+            } else {
+                feedbackText = `${studentName}, jawaban salah, kamu belajar lebih giat lagi`;
+                alertBox.classList.add('alert-danger');
+                alertBox.innerHTML = `<i class="bi bi-x-circle-fill me-2"></i><strong>${feedbackText}</strong>`;
+            }
+
+            speakText(feedbackText);
+            updateNavGridUI();
+        }
+
+        // Hitung Total Skor
+        function calculateScore() {
+            let currentCorrect = 0;
+            userAnswers.forEach((ans, idx) => {
+                if (ans !== null && ans === questions[idx].answer) {
+                    currentCorrect++;
+                }
+            });
+            score = currentCorrect * 100;
+            document.getElementById('live-score').innerText = `Skor: ${score}`;
+        }
+
+        // Perpindahan Soal
+        function navigateQuestion(direction) {
+            const newIndex = currentQuestionIndex + direction;
+            if (newIndex >= 0 && newIndex < 50) {
+                loadQuestion(newIndex);
+            }
+        }
+
+        function jumpToQuestion(index) {
+            loadQuestion(index);
+        }
+
+        // Selesai Kuis & Tampilkan Hasil
+        function finishQuiz() {
+            let correctCount = 0;
+            let wrongCount = 0;
+
+            userAnswers.forEach((ans, idx) => {
+                if (ans === questions[idx].answer) {
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            const totalScore = correctCount * 100;
+
+            document.getElementById('screen-quiz').classList.add('d-none');
+            document.getElementById('screen-result').classList.remove('d-none');
+
+            document.getElementById('result-student-name').innerText = `Nama Murid: ${studentName}`;
+            document.getElementById('result-correct').innerText = correctCount;
+            document.getElementById('result-wrong').innerText = wrongCount;
+            document.getElementById('final-score').innerText = totalScore;
+
+            let appreciationText = "";
+            if (totalScore >= 4000) {
+                appreciationText = `Selamat ${studentName}! Hasil kerjamu sangat luar biasa. Pertahankan prestasi dan semangat belajarmu bersama Guru Wahyu Hidayat S.Kom!`;
+            } else if (totalScore >= 2500) {
+                appreciationText = `Bagus sekali ${studentName}! Kamu sudah berusaha dengan baik. Belajar lebih giat lagi untuk hasil yang sempurna!`;
+            } else {
+                appreciationText = `Tetap semangat ${studentName}! Jangan berkecil hati, belajar lebih giat lagi bersama Guru Wahyu Hidayat S.Kom!`;
+            }
+
+            document.getElementById('appreciation-box').innerText = appreciationText;
+            speakText(`${studentName}, kuis telah selesai. ${appreciationText}`);
+        }
+
+        // Mengulang Kuis
+        function restartQuiz() {
+            userAnswers = new Array(50).fill(null);
+            score = 0;
+            document.getElementById('live-score').innerText = `Skor: 0`;
+            document.getElementById('screen-result').classList.add('d-none');
+            document.getElementById('screen-welcome').classList.remove('d-none');
+            document.getElementById('student-name').value = '';
+        }
+    </script>
+</body>
+</html>
